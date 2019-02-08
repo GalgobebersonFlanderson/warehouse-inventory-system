@@ -15,6 +15,66 @@ import com.revature.spark.beans.Warehouse;
  */
 public class AssociateImplementation {
 
+	private void mergeSort(double[] array) 
+    { 
+        if(array == null) 
+        { 
+            return; 
+        } 
+  
+        if(array.length > 1) 
+        { 
+            int mid = array.length / 2; 
+  
+            double[] left = new double[mid]; 
+            for(int i = 0; i < mid; i++) 
+            { 
+                left[i] = array[i]; 
+            } 
+              
+            double[] right = new double[array.length - mid]; 
+            for(int i = mid; i < array.length; i++) 
+            { 
+                right[i - mid] = array[i]; 
+            } 
+            
+            mergeSort(left); 
+            mergeSort(right); 
+  
+            int l = 0; 
+            int r = 0; 
+            int o = 0; 
+  
+            while(l < left.length && r < right.length) 
+            { 
+                if(left[l] < right[r]) 
+                { 
+                    array[o] = left[l]; 
+                    l++; 
+                } 
+                else
+                { 
+                    array[o] = right[r]; 
+                    r++; 
+                } 
+                o++; 
+            } 
+            
+            while(l < left.length) 
+            { 
+                array[o] = left[l]; 
+                l++; 
+                o++; 
+            } 
+            
+            while(r < right.length) 
+            { 
+                array[o] = right[r]; 
+                r++; 
+                o++; 
+            } 
+        } 
+    }
 	/**
 	 * Find the sum of all product assets. Remember that quantity times price is the
 	 * total value for a given product.
@@ -40,15 +100,13 @@ public class AssociateImplementation {
 	 * @return
 	 */
 	public Double min(List<Product> products) {
-		double result = 0;
-		List<Double> prices = new java.util.ArrayList<Double>();
+		double[] prices = new double[products.size()];
 		for(int i = 0; i < products.size(); ++i)
 		{
-			prices.add(products.get(i).getPrice());
+			prices[i] = products.get(i).getPrice();
 		}
-		java.util.Collections.sort(prices);	
-		result = prices.get(0);
-		return result;
+		mergeSort(prices);
+		return prices[0];
 	}
 
 	/**
@@ -58,15 +116,13 @@ public class AssociateImplementation {
 	 * @return
 	 */
 	public Double max(List<Product> products) {
-		double result = 0;
-		List<Double> prices = new java.util.ArrayList<Double>();
+		double[] prices = new double[products.size()];
 		for(int i = 0; i < products.size(); ++i)
 		{
-			prices.add(products.get(i).getPrice());
+			prices[i] = products.get(i).getPrice();
 		}
-		java.util.Collections.sort(prices);	
-		result = prices.get(prices.size() - 1);
-		return result;
+		mergeSort(prices);
+		return prices[prices.length - 1];
 	}
 
 	/**
@@ -96,23 +152,21 @@ public class AssociateImplementation {
 	public Double median(List<Product> products) {
 		if (products.size() == 1)
 			return products.get(0).getPrice();
-		double result = 0;
-		List<Double> prices = new java.util.ArrayList<Double>();
+		double[] prices = new double[products.size()];
 		int ind = (int)(products.size() * 0.5);
 		for(int i = 0; i < products.size(); ++i)
 		{
-			prices.add(products.get(i).getPrice());
+			prices[i] = products.get(i).getPrice();
 		}
-		java.util.Collections.sort(prices);	
-		if (prices.size() % 2 == 0)
+		mergeSort(prices);	
+		if (prices.length % 2 == 0)
 		{
-			result = (prices.get(ind) + prices.get(ind - 1))* 0.5;
+			return (prices[ind] + prices[ind - 1]) * 0.5;
 		}
 		else
 		{
-			result = prices.get(ind);
+			return prices[ind];
 		}
-		return result;
 	}
 
 	/**
