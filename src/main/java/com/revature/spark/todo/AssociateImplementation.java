@@ -23,7 +23,14 @@ public class AssociateImplementation {
 	 * @return
 	 */
 	public Double sum(List<Product> products) {
-		return null;
+		double result = 0;
+		
+		for(int i = 0; i < products.size(); ++i)
+		{
+			result += (products.get(i).getPrice() * products.get(i).getQuantity());
+		}
+		
+		return result;
 	}
 
 	/**
@@ -33,7 +40,15 @@ public class AssociateImplementation {
 	 * @return
 	 */
 	public Double min(List<Product> products) {
-		return null;
+		double result = 0;
+		List<Double> prices = new java.util.ArrayList<Double>();
+		for(int i = 0; i < products.size(); ++i)
+		{
+			prices.add(products.get(i).getPrice());
+		}
+		java.util.Collections.sort(prices);	
+		result = prices.get(0);
+		return result;
 	}
 
 	/**
@@ -43,7 +58,15 @@ public class AssociateImplementation {
 	 * @return
 	 */
 	public Double max(List<Product> products) {
-		return null;
+		double result = 0;
+		List<Double> prices = new java.util.ArrayList<Double>();
+		for(int i = 0; i < products.size(); ++i)
+		{
+			prices.add(products.get(i).getPrice());
+		}
+		java.util.Collections.sort(prices);	
+		result = prices.get(prices.size() - 1);
+		return result;
 	}
 
 	/**
@@ -53,7 +76,15 @@ public class AssociateImplementation {
 	 * @return
 	 */
 	public Double avg(List<Product> products) {
-		return null;
+		if (products.size() == 1)
+			return products.get(0).getPrice();
+		double result = 0;
+		for(int i = 0; i < products.size(); ++i)
+		{
+			result += products.get(i).getPrice();
+		}
+		result /= products.size();
+		return result;
 	}
 
 	/**
@@ -63,7 +94,25 @@ public class AssociateImplementation {
 	 * @return
 	 */
 	public Double median(List<Product> products) {
-		return null;
+		if (products.size() == 1)
+			return products.get(0).getPrice();
+		double result = 0;
+		List<Double> prices = new java.util.ArrayList<Double>();
+		int ind = (int)(products.size() * 0.5);
+		for(int i = 0; i < products.size(); ++i)
+		{
+			prices.add(products.get(i).getPrice());
+		}
+		java.util.Collections.sort(prices);	
+		if (prices.size() % 2 == 0)
+		{
+			result = (prices.get(ind) + prices.get(ind - 1))* 0.5;
+		}
+		else
+		{
+			result = prices.get(ind);
+		}
+		return result;
 	}
 
 	/**
