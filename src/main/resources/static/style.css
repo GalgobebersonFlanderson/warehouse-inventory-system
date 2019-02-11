@@ -1,3 +1,21 @@
 div.center{
 	text-align: center;
 }
+
+table{
+  width: 100%;
+}
+
+table, th, td {
+  border: 3px solid white;
+  border-collapse: collapse
+}
+
+tr, th, td{
+	color: white;
+	text-align: center;
+}
+li{
+	text-align: left;
+	list-style-type: none;
+}
