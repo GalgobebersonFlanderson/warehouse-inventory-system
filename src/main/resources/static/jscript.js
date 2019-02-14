@@ -142,7 +142,7 @@ function formToObjPost(){
 	}
 	ajaxRequest("POST", product, null, obj);
 	ajaxRequest("GET", productAll, productAllGetResponse);
-	//setTimeout(function(){window.location.reload(true)}, 1);
+	setTimeout(function(){window.location.reload(true)}, 10);
 }
 
 function formToObjPut(){

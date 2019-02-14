@@ -10,7 +10,7 @@ import com.revature.spark.beans.Warehouse;
  * Within this class, you will implement the logic to calculate data for various
  * reports.
  * 
- * @author Your Name Here
+ * @author Kirill Zhdakh
  * 
  */
 public class AssociateImplementation {
@@ -100,13 +100,15 @@ public class AssociateImplementation {
 	 * @return
 	 */
 	public Double min(List<Product> products) {
-		double[] prices = new double[products.size()];
-		for(int i = 0; i < products.size(); ++i)
+		//double[] prices = new double[products.size()];
+		double min = products.get(0).getPrice();
+		for(int i = 1; i < products.size(); ++i)
 		{
-			prices[i] = products.get(i).getPrice();
+			if (min > products.get(i).getPrice())
+				min = products.get(i).getPrice();
 		}
-		mergeSort(prices);
-		return prices[0];
+		//mergeSort(prices);
+		return min;
 	}
 
 	/**
@@ -116,13 +118,15 @@ public class AssociateImplementation {
 	 * @return
 	 */
 	public Double max(List<Product> products) {
-		double[] prices = new double[products.size()];
-		for(int i = 0; i < products.size(); ++i)
+		//double[] prices = new double[products.size()];
+		double max = products.get(0).getPrice();
+		for(int i = 1; i < products.size(); ++i)
 		{
-			prices[i] = products.get(i).getPrice();
+			if (max < products.get(i).getPrice())
+				max = products.get(i).getPrice();
 		}
-		mergeSort(prices);
-		return prices[prices.length - 1];
+		//mergeSort(prices);
+		return max;
 	}
 
 	/**
